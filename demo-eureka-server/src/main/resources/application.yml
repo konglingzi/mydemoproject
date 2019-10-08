@@ -1,0 +1,29 @@
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否在Eureka注册。没有该配置，则单机版启动会报错。
+    registerWithEureka: false
+    # 是否从Eureka中获取注册信息。没有该配置，则单机版启动会报错。
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: eurka-server
+  security:
+    user:
+      roles: admin
+      name: root
+      password: 123
+#  管理端口，通过浏览器访问以下地址进行server管理
+management:
+  server:
+    servlet:
+      context-path: /manage
+    port: 5678
